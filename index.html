@@ -2,63 +2,77 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <title>IA + IE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IA+IE+IH - DJM 2025</title>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-        background-color: #1e3e75;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: black;
+      }
+
+      video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 100vh;
-        margin: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        color: white;
+        font-size: 1.2rem;
+        font-family: sans-serif;
+      }
+
+      .overlay.hidden {
+        display: none;
       }
     </style>
   </head>
-  <body class="bg-[url('./img/web.webp')] bg-cover bg-center min-h-screen flex items-start justify-center">
-    <div class="bg-white rounded-2xl shadow-sm w-3/4 max-w-s mt-5">
-      <div class="flex gap-4 px-2 pt-6 items-start">
-        <div class="pt-1"></div>
-        <div class="flex flex-col">
-          <p
-            class="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-1"
-          >
-            Save the date
-          </p>
-          <h1 class="text-3xl font-light text-gray-900 leading-none">
-            12 de julio
-          </h1>
-        </div>
-      </div>
-      <div class="px-6 pb-6 pt-4">
-        <p class="text-sm text-gray-700 leading-snug mb-3">
-          <strong>IA + IE = Impacto humano</strong>: la revolución interior del
-          joven budista.<br />
-          <!-- <hr>
-          <span class="block my-3">
-            📍 Centro Cultural Montaña de Paz<br />
-            📅 Sábado 12 de julio de 2025, 6:30 PM
-          </span> -->
-           <hr>
-        </p>
-        <a
-href="data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ASUMMARY:IA + IE%0ADESCRIPTION:IA + IE = Impacto humano: la revolución interior del joven budista.%0ALOCATION:Centro Cultural Montaña de Paz%0ADTSTART:20250712T223000Z%0ADTEND:20250713T003000Z%0AEND:VEVENT%0AEND:VCALENDAR"
-          download="IA-IE-evento.ics"
-          class="mt-4 inline-block text-sm text-red-500 font-medium hover:underline"
-        >
-          <i class="fa-solid fa-plus mr-1 text-red-500"></i> Añadir a calendario
-        </a>
-      </div>
+  <body>
+    <div class="overlay" onclick="playWithSound()">
+      Haz clic para activar sonido
     </div>
+
+    <video id="bgVideo" loop playsinline>
+      <source src="/video/CAPITULO-4-FINAL.mp4" type="video/mp4" />
+    </video>
+
+    <script>
+      const video = document.getElementById("bgVideo");
+      const overlay = document.querySelector(".overlay");
+
+      video.muted = true;
+      video.play();
+
+      function playWithSound() {
+        video.muted = false;
+        video.currentTime = 0;
+        video.play();
+        overlay.classList.add("hidden");
+      }
+    </script>
   </body>
 </html>
